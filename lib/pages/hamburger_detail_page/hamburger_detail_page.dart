@@ -35,6 +35,7 @@ class _HamburgerDetailPageState extends State<HamburgerDetailPage> with SingleTi
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(),
       body: AnimatedBuilder(
         animation: _controller,
         builder: (context, child) {
