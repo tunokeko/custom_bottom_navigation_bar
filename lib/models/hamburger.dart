@@ -12,13 +12,13 @@ List<Hamburger> hamburgers = [
   Hamburger(
     title: "Cheeseburger", 
     subtitle: "Wendy's Burger", 
-    url: "assets/images/hamburger-1.jpg", 
+    url: "assets/images/hamburger-1.png", 
     rating: 4.9 
   ),
   Hamburger(
     title: "Hamburger", 
     subtitle: "Veggie Burger", 
-    url: "assets/images/hamburger-2.jpg", 
+    url: "assets/images/hamburger-2.png", 
     rating: 4.8 
   ),
   Hamburger(
@@ -30,7 +30,7 @@ List<Hamburger> hamburgers = [
   Hamburger(
     title: "Hamburger", 
     subtitle: "Fried Chicken Burger", 
-    url: "assets/images/hamburger-4.jpg", 
+    url: "assets/images/hamburger-4.png", 
     rating: 4.5
   )
 ];
