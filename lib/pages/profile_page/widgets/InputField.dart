@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_projject/styleguide/colors.dart';
 
 class InputField extends StatelessWidget {
   final Icon? leftIcon;

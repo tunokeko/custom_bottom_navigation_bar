@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_projject/models/hamburger.dart';
+import 'package:flutter_projject/pages/hamburger_detail_page/hamburger_detail_page.dart';
 import 'package:flutter_projject/pages/home_page/widgets/category_tile.dart';
 import 'package:flutter_projject/pages/home_page/widgets/hamburger_tile.dart';
 import 'package:flutter_projject/pages/profile_page/profile_page.dart';
@@ -109,7 +110,13 @@ class HomePage extends StatelessWidget {
                 ),
                 itemCount: hamburgers.length, 
                 itemBuilder: (context, index) {
-                  return HamburgerTile(index: index);
+                  return GestureDetector(
+                    onTap: () {
+                       Navigator.push(context, MaterialPageRoute(builder: (context) => 
+                       HamburgerDetailPage(hamburger: hamburgers[index],)));
+                    },
+                    child: HamburgerTile(index: index)
+                  );
                 }
               )
             ],

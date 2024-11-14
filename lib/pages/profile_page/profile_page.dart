@@ -18,7 +18,6 @@ class ProfilePage extends StatelessWidget {
         children: [
           SizedBox(
             height: double.infinity,
-            // color: highlightColor,
             child: Image.asset(
               'assets/images/hamburger-1.png',
               color: highlightColor,
