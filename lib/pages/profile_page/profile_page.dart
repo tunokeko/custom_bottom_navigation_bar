@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_projject/pages/profile_page/widgets/InputField.dart';
 import 'package:flutter_projject/styleguide/colors.dart';
-import 'package:flutter_projject/styleguide/decoration.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
