@@ -1,121 +1,139 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_projject/models/hamburger.dart';
-import 'package:flutter_projject/pages/profile_page/widgets/category_tile.dart';
-import 'package:flutter_projject/pages/profile_page/widgets/hamburger_tile.dart';
+import 'package:flutter_projject/pages/profile_page/widgets/InputField.dart';
 import 'package:flutter_projject/styleguide/colors.dart';
 import 'package:flutter_projject/styleguide/decoration.dart';
-import 'package:flutter_projject/styleguide/fonts.dart';
-import 'package:flutter_projject/widgets/buttom_custom_bar.dart';
 
 class ProfilePage extends StatelessWidget {
-  ProfilePage({super.key});
+  const ProfilePage({super.key});
 
-  final List texts = ['All','Combos','Sliders','Classic'];
   @override
   Widget build(BuildContext context) {
+    final screenHeight = MediaQuery.of(context).size.height;
+    final screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            children: [
-              Row(
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        backgroundColor: highlightColor.withOpacity(0.1),
+      ),
+      body: Stack(
+        children: [
+          SizedBox(
+            height: double.infinity,
+            // color: highlightColor,
+            child: Image.asset(
+              'assets/images/hamburger-1.png',
+              color: highlightColor,
+              colorBlendMode: BlendMode.multiply,
+              alignment: Alignment.topCenter,
+            ),
+          ),
+          Positioned(
+            bottom: 0,
+            height: screenHeight * 0.75,
+            width: screenWidth,            
+            child: Container(
+              padding: const EdgeInsets.fromLTRB(
+                16, 128, 16, 8
+              ),
+              decoration: const BoxDecoration(
+                color: highlightTextColor,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(50),
+                  topRight: Radius.circular(50),
+                ) 
+              ),
+              child: Column(
                 children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                  const InputField(),
+                  const SizedBox(height: 24),
+                  const InputField.email(),
+                  const SizedBox(height: 24),
+                  const InputField(
+                    label: "Delivery Address",
+                    leftIcon: Icon(Icons.fast_forward),
+                  ),
+                  const SizedBox(height: 24),
+                  const InputField.password(),
+                  const SizedBox(height: 24),
+                  const Divider(),
+                  const SizedBox(height: 16),
+                  const Column(
                     children: [
-                      const Text("Foodgo", style: appTitle),
-                      Text("Order Your Favourite Food!", style: subtitle),
+                      Row(
+                        children: [
+                          Text("Payment Details"),
+                          Spacer(),
+                          Icon(Icons.arrow_right)
+                        ],
+                      ),
+                      SizedBox(height: 12),
+                      Row(
+                        children: [
+                          Text("Order History"),
+                          Spacer(),
+                          Icon(Icons.arrow_right)
+                        ],
+                      )
                     ],
                   ),
-                  const Spacer(),
-                  ClipRRect(
-                    borderRadius: const BorderRadius.all(Radius.circular(24)),
-                    child: Image.asset(
-                      'assets/images/profile.jpg',
-                      width: 60,
-                      height: 60,
-                      fit: BoxFit.cover,
-                    ),
-                  )
-                ],
-              ),
-              const SizedBox(
-                height: 36,
-              ),
-              Row(
-                children: [
-                  Expanded(
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: highlightTextColor,
-                        borderRadius: const BorderRadius.all(Radius.circular(16)),
-                        boxShadow: shadow
-                      ),
-                      child: const TextField(
-                        decoration: InputDecoration(
-                          border: InputBorder.none,
-                          hintText: 'Search',
-                          prefixIcon: Icon(Icons.search),
-                          contentPadding: EdgeInsets.symmetric(vertical: 12)
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.all(16),
+                        decoration: BoxDecoration(
+                          borderRadius: const BorderRadius.all(Radius.circular(12)),
+                          color: subtitleColor
+                        ),
+                        child: const Row(
+                          children: [
+                            Text("Edit Profile",style: TextStyle(color: Colors.white),),
+                            SizedBox(width: 8,),
+                            Icon(Icons.update, color: Colors.white,)
+                          ],
                         ),
                       ),
-                    ),
-                  ),
-                  const SizedBox(width: 10),
-                  Container(
-                    padding: const EdgeInsets.all(12),
-                    decoration: const BoxDecoration(
-                      color: highlightColor,
-                      borderRadius: BorderRadius.all(radius)
-                    ),
-                    child: const Icon(Icons.settings, color: highlightTextColor,),
+                      Container(
+                        padding: const EdgeInsets.all(16),
+                        decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(12)),
+                          color: highlightColor
+                        ),
+                        child: const Row(
+                          children: [
+                            Text("Log Out",style: TextStyle(color: highlightTextColor),),
+                            SizedBox(width: 8,),
+                            Icon(Icons.logout, color: Colors.white,)
+                          ],
+                        ),
+                      )
+                    ],
                   )
                 ],
               ),
-              const SizedBox(
-                height: 18,
-              ),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: [
-                    ...List.generate(texts.length, (index) {
-                      return CategoryTile(
-                        isSelected: index == 0, 
-                        text: texts[index]
-                      );
-                    })
-                  ],
-                ),
-              ),
-              GridView.builder(
-                
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  mainAxisSpacing: 20,
-                  crossAxisSpacing: 20,
-                  childAspectRatio: 0.68,
-                ),
-                itemCount: hamburgers.length, 
-                itemBuilder: (context, index) {
-                  return HamburgerTile(index: index);
-                }
-              )
-            ],
+            ),
           ),
-        ),
-      ),
-      bottomNavigationBar: BottomCustomBar(
-        icons: const [
-          Icons.home_outlined,
-          Icons.person_outline_outlined,
-          Icons.message_outlined,
-          Icons.favorite
+          Positioned(
+            top: (screenHeight * 0.25) - (screenWidth / 5),
+            left: (screenWidth / 2) - (screenWidth / 5),
+            width: screenWidth / 2.5,
+            height: screenWidth / 2.5,
+            child: Container(
+              decoration: BoxDecoration(
+                border: Border.all(color: highlightColor, width: 5),
+                borderRadius: const BorderRadius.all(Radius.circular(24))
+              ),
+              child: ClipRRect(
+                borderRadius: const BorderRadius.all(Radius.circular(24)),
+                child: Image.asset(
+                  'assets/images/profile.jpg',
+                  fit: BoxFit.fitWidth,
+                ),
+              
+              ),
+            ),
+          )
         ],
-        press: (index) => {},
       ),
     );
   }

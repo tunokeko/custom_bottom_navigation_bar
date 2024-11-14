@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_projject/pages/profile_page/profile_page.dart';
+import 'package:flutter_projject/pages/home_page/home_page.dart';
 //En üstte genel şeylet(ortalama gibi)
 //ortada seçilecek dersler
 //en altta o ders ile ilgili sonuçlar
@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: ProfilePage(),
+      home: HomePage(),
     );
   }
 }
